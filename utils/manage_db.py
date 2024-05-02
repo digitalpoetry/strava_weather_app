@@ -75,6 +75,15 @@ def get_settings(athlete_id: int):
     else:
         return DEFAULT_SETTINGS._replace(id=athlete_id)
 
+def get_subscribers_count():
+    """Count total count of application users
+    """
+    db = get_db()
+    cur = db.cursor()
+    result = cur.execute('SELECT COUNT(*) FROM subscribers').fetchone()
+    return result[0]
+
+
 
 def delete_athlete(athlete_id: int):
     """Remove athlete's tokens and settings.
